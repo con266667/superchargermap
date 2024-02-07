@@ -17,12 +17,6 @@ function App() {
     }
   };
 
-  function fetchJson(url: string) {
-    return fetch(url).then((res) => res.json()).then((data) => {
-      convertLocations(data);
-    });
-  }
-
   function isV3(location: Location) {
     return location.status === 'OPEN' && location.powerKilowatt === 250;
   }
@@ -54,8 +48,10 @@ function App() {
   }
 
   useEffect(() => {
-    fetchJson('https://supercharge.info/service/supercharge/allSites');
-  }, []);
+    fetch('https://supercharge.info/service/supercharge/allSites').then((res) => res.json()).then((data) => {
+      convertLocations(data);
+    });
+  });
 
   return (
     <ReactMapGL
