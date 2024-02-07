@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMapGL, { CircleLayer, Layer, Source } from 'react-map-gl';
 import type {FeatureCollection, Feature} from 'geojson';
 import "./App.css";
@@ -18,7 +18,7 @@ function App() {
     type: 'circle',
     paint: {
       'circle-radius': 7,
-      'circle-color': '#007cbf',
+      'circle-color': '#e00206',
       'circle-stroke-color': 'white',
       'circle-stroke-width': 3,
     }
