@@ -4,13 +4,6 @@ import type {FeatureCollection, Feature} from 'geojson';
 import "./App.css";
 
 function App() {
-  const [viewport, setViewport] = useState({
-    width: 400,
-    height: 400,
-    latitude: 38.958630,
-    longitude: -77.357002,
-    zoom: 10
-  });
   const [geojson, setGeojson] = useState<FeatureCollection>({type: 'FeatureCollection', features: []});
 
   const layerStyle: CircleLayer = {
