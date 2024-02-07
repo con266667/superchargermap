@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactMapGL, { CircleLayer, Layer, Source } from 'react-map-gl';
 import type {FeatureCollection, Feature} from 'geojson';
 import "./App.css";
@@ -21,7 +21,7 @@ function App() {
     return location.status === 'OPEN' && location.powerKilowatt === 250;
   }
 
-  function convertLocations(locations: Location[]) {
+  const convertLocations = useCallback((locations: Location[]) => {
     if (!locations || locations.length === 0) {
       return;
     }
@@ -32,7 +32,7 @@ function App() {
       newGeojson.features = features;
       return newGeojson;
     });
-  }
+  }, []);
 
   function locationToFeature(location: Location) {
     return {
@@ -51,7 +51,7 @@ function App() {
     fetch('https://supercharge.info/service/supercharge/allSites').then((res) => res.json()).then((data) => {
       convertLocations(data);
     });
-  });
+  }, [convertLocations]);
 
   return (
     <ReactMapGL
